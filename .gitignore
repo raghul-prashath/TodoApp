@@ -3,6 +3,8 @@
 # dependencies
 /client/node_modules
 /client/build
+/server/__pycache__
+/server/venv
 
 # misc
 .DS_Store
