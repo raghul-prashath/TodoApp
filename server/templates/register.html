@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> register </title>
+        <link rel="stylesheet" href="../static/style.css">       
+
+        <style>
+            .bgimg {
+              background-image: url('/static/images/home.jpeg');
+              min-height: 100%;
+              background-position: center;
+              background-size: cover;
+            }
+            
+        </style>
+
+    </head>
+    <body>
+        <div class="bgimg w3-display-container w3-animate-opacity">
+            <div class="registercontent" align="center">
+                <div class="registertop">
+                    <h1>Register</h1>
+                </div></br></br>
+                <div class="registerbottom">
+                  <form action="{{ url_for('register')}}" method="post" autocomplete="off">
+                <div class="msg">{{ msg }}</div><br>
+                <input type="text" name="rollno" style="color: white;" placeholder="Enter Your rollno" class="textbox" id="rollno" required></br></br>
+                <input type="text" name="name" style="color: white;" placeholder="Enter Your Name" class="textbox" id="name" required></br></br>
+                <input type="password" name="password" style="color: white;" placeholder="Enter Your Password" class="textbox" id="password" required></br></br>
+                <input type="email" name="email" style="color: white;" placeholder="Enter Your Email ID" class="textbox" id="email" required></br></br>
+                <input type="text" name="phone_number" style="color: white;" placeholder="Enter Your Phone Number" class="textbox" id="phone_number" required></br></br>
+                <input type="text" name="address" style="color: white;" placeholder="Enter Your Address" class="textbox" id="address" required></br></br>
+                <input type="text" name="city" style="color: white;" placeholder="Enter Your City" class="textbox" id="city" required></br></br>
+                <input type="text" name="state" style="color: white;" placeholder="Enter Your State" class="textbox" id="state" required></br></br>
+                <input type="text" name="country" style="color: white;" placeholder="Enter Your Country" class="textbox" id="country" required></br></br>
+                <input type="text" name="postalcode" style="color: white;" placeholder="Enter Your Postal Code" class="textbox" id="postalcode" required></br></br>
+                <input type="submit" class="btn" value="Register">
+                  </form>
+                  <p class="worddark">Already have account? <a class="worddark" href="{{ url_for('login')}}">Login here</a></p>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

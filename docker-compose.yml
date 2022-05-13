@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  mysql:
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    container_name: mydatabase
+    image: foreverrp/mysql
+    restart: on-failure
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=todos
+      - MYSQL_USER=user
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_PASSWORD=password
+    networks:
+      - jointbridge
+
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    image: foreverrp/server
+    environment:
+      - MYSQL_DATABASE=todos
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_HOST=mysql
+    links:
+      - mysql
+    ports:
+      - "5000:5000"
+    restart: on-failure
+    labels:
+      kompose.service.type: LoadBalancer
+    networks:
+      - jointbridge
+      
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    image: foreverrp/client
+    environment:
+      - REACT_HOST=server
+    ports:
+      - "3000:3000"
+    links:
+      - server
+    restart: on-failure
+    labels:
+      kompose.service.type: LoadBalancer
+    networks:
+      - jointbridge
+
+
+networks:
+  jointbridge:
+    driver : bridge
